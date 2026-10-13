@@ -1,0 +1,22 @@
+Salva docker-compose.yml dentro DataMAN (la cartella principale), poi da PowerShell:
+
+powershell
+cd C:\Users\filip\Desktop\DataMAN
+docker compose up -d
+
+Questo scarica le immagini (solo la prima volta, un paio di minuti) e avvia entrambi i database in background. Verifica che siano su:
+
+powershell
+docker ps
+
+Chiuderre il docker
+docker compose down
+
+
+Credenziali 
+	        MySQL	        MongoDB
+host	        localhost	localhost
+porta	        3306	        27017
+utente	        root	        root
+password	f1password	f1password
+database	f1_kaggle	f1_tracinginsights

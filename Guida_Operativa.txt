@@ -1,0 +1,57 @@
+Guida Operativa — Riproducibilità del Progetto / Filippo Avon Data Management 2026 / F1 2026
+
+
+1. Due fonti dati:
+- Kaggle               —       jtrotman/formula-1-race-data
+- TracingInsights      —       github.com/TracingInsights/2026
+
+2. Prerequisiti software
+
+- Python 3.12.4 (testato)
+- Jupyter Notebook o VS Code con estensione Jupyter 
+- Docker Desktop 
+- Account Kaggle, serve un token API personale 
+
+2.1 Librerie Python richieste
+
+powershell
+pip install pandas sqlalchemy pymysql pymongo kagglehub requests matplotlib
+
+
+2.2 Credenziali Kaggle
+
+1. Su kaggle.com → icona profilo → Settings → sezione API → Create New Token → si scarica kaggle.json.
+2. Spostarlo in C:\Users\<utente>\.kaggle\kaggle.json.
+   In alternativa, impostare le variabili d'ambiente KAGGLE_USERNAME e KAGGLE_KEY con il contenuto dello stesso file.
+
+2.3 Token GitHub (opzionale)
+
+Senza token, le chiamate alla GitHub API sono limitate a 60/ora. Con un token gratuito si sale a 5000/ora:
+
+python
+import os
+os.environ["GITHUB_TOKEN"] = "il_tuo_token"
+
+da eseguire in una cella prima di download_tracinginsights.py.
+
+3. Setup dei database
+
+1. Salvare `docker-compose.yml` dentro la cartella con il codice del progetto.
+2. Avviare Docker Desktop (meglio avviarlo come admin) e aspettare "Engine running".
+3. Da PowerShell:
+
+   cd C:\Users\<utente>\<percorso della cartella con il progetto>
+   docker compose up -d
+
+
+   docker ps      serve per verificare se il docker ha creato i database
+
+4. Risulati
+
+Per ogni fase del progetto viene creata passo dopo passo una sub-cartella all interno della
+cartella del progetto che conterranno il contenuto in formato csv delle diverse fasi.
+
+data -- integration -- profiling -- quality -- queries
+  
+
+
